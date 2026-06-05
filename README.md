@@ -25,7 +25,11 @@ Visit our live site: [banderaskyworks.com](https://banderaskyworks.com)
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Framework**: Bootstrap 5.3
 - **Icons**: Font Awesome 6.4
+- **Framework**: [Astro](https://astro.build) (static output)
+- **Styling**: Tailwind CSS v4 with a shared design system mirroring the [UAS-Log](https://github.com/DamageLabs/uas-log) app (Outfit typeface, `brand`/`gray` token ramps)
+- **Language**: TypeScript
 - **Contact Form**: EmailJS integration
+- **Analytics**: Cloudflare Web Analytics
 - **Hosting**: Google Cloud Platform VM
 - **CI/CD**: GitHub Actions
 
@@ -33,8 +37,7 @@ Visit our live site: [banderaskyworks.com](https://banderaskyworks.com)
 
 ### Prerequisites
 
-- Web server (Nginx or Apache)
-- Modern web browser
+- Node.js 24+ (see `.nvmrc`)
 - Git
 
 ### Local Development
@@ -45,54 +48,52 @@ git clone https://github.com/Bandera-Skyworks/banderaskyworks.git
 cd banderaskyworks
 ```
 
-2. Open in your browser:
+2. Install dependencies and start the dev server:
 ```bash
-# For Python users
-python -m http.server 8000
-
-# For Node.js users
-npx serve
-
-# Or simply open index.html in your browser
+npm install
+npm run dev
 ```
 
-3. Navigate to `http://localhost:8000`
+3. Navigate to `http://localhost:4321`
+
+### Building
+
+```bash
+npm run build    # outputs static HTML/CSS/JS to dist/
+npm run preview  # serve the production build locally
+```
 
 ## 📁 Project Structure
 
 ```
 banderaskyworks/
-├── index.html          # Homepage
-├── about.html          # About Us page
-├── services.html       # Services page
-├── contact.html        # Contact page with form
-├── assets/
-│   ├── css/
-│   │   └── styles.css  # Main stylesheet
-│   ├── js/
-│   │   └── contact-form.js  # Contact form handler
-│   └── images/
-│       ├── logo3.png   # Company logo
-│       ├── logo2.png   # Alternative logo
-│       └── pl-inspection.png  # Service image
-├── old/                # Archived files
-└── .github/
-    └── workflows/
-        ├── deploy-to-gcp.yml  # Deployment workflow
-        └── README.md          # Deployment documentation
+├── src/
+│   ├── pages/              # One file per route → index/about/services/contact/404.html
+│   ├── layouts/
+│   │   └── BaseLayout.astro # <head> SEO meta, JSON-LD, dark-mode init
+│   ├── components/         # Navbar, Footer, Button, Card, Badge, Icon, ContactForm…
+│   ├── lib/
+│   │   └── site.ts         # Single source of truth for site content & metadata
+│   └── styles/
+│       └── theme.css       # Shared @theme design tokens (mirrors UAS-Log)
+├── public/                 # Copied verbatim to the site root
+│   ├── assets/images/      # Logos and imagery
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   └── .htaccess
+└── .github/workflows/
+    ├── deploy-to-gcp.yml   # Build + deploy to GCP VM
+    └── README.md           # Deployment documentation
 ```
 
 ## 🔧 Configuration
 
 ### Contact Form Setup
 
-The contact form uses EmailJS. To configure:
+The contact form uses EmailJS. Credentials live in `src/components/ContactForm.astro`:
 
-1. Sign up at [EmailJS](https://www.emailjs.com/)
-2. Update credentials in `assets/js/contact-form.js`:
-   - Public Key: Line 7
-   - Service ID: Line 50
-   - Template ID: Line 50
+- Public Key — `emailjs.init(...)`
+- Service ID / Template ID — `emailjs.send('gmail_1', 'template_cb3vlel', ...)`
 
 ### Deployment Configuration
 
