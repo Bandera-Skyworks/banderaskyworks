@@ -1,0 +1,91 @@
+---
+import { site, nav } from '../lib/site';
+import Icon from './Icon.astro';
+
+const year = 2026;
+---
+
+<footer class="mt-20 border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+  <div class="mx-auto max-w-(--breakpoint-xl) px-4 py-12 md:px-6">
+    <div class="grid gap-10 md:grid-cols-3">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2.5">
+          <img src={site.icon} alt="" class="h-8 w-8" width="32" height="32" />
+          <span class="text-base font-semibold text-gray-900 dark:text-white/90">
+            Bandera Skyworks
+          </span>
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-gray-500 dark:text-gray-400">
+          Professional drone services for the Texas Hill Country. FAA certified, fully insured, and
+          committed to excellence.
+        </p>
+        <div class="mt-5 flex items-center gap-3">
+          <a
+            href={site.social.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            class="hover:border-brand-300 hover:text-brand-500 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 transition-colors dark:border-gray-800 dark:text-gray-400"
+          >
+            <Icon name="twitter" class="h-4 w-4" />
+          </a>
+          <a
+            href={site.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="hover:border-brand-300 hover:text-brand-500 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 transition-colors dark:border-gray-800 dark:text-gray-400"
+          >
+            <Icon name="instagram" class="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h2 class="text-sm font-semibold text-gray-900 dark:text-white/90">Quick Links</h2>
+        <ul class="mt-4 space-y-3">
+          {
+            nav.slice(1).map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="hover:text-brand-500 text-sm text-gray-500 transition-colors dark:text-gray-400"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h2 class="text-sm font-semibold text-gray-900 dark:text-white/90">Contact Info</h2>
+        <ul class="mt-4 space-y-3 text-sm text-gray-500 dark:text-gray-400">
+          <li class="flex items-center gap-2.5">
+            <Icon name="phone" class="text-brand-500 h-4 w-4" />
+            <a href={site.phoneHref} class="hover:text-brand-500">{site.phone}</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <Icon name="envelope" class="text-brand-500 h-4 w-4" />
+            <a href={`mailto:${site.email}`} class="hover:text-brand-500">{site.email}</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <Icon name="mapPin" class="text-brand-500 h-4 w-4" />
+            {site.area}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-gray-200 pt-6 text-xs text-gray-400 sm:flex-row dark:border-gray-800 dark:text-gray-500"
+    >
+      <p>&copy; {year} Bandera Skyworks. All rights reserved.</p>
+      <p>FAA Part 107 Certified · Fully Insured</p>
+    </div>
+  </div>
+</footer>

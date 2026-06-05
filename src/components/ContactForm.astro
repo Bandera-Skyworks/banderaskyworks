@@ -1,0 +1,194 @@
+---
+import { site } from '../lib/site';
+
+const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300';
+---
+
+<form id="contactForm" class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+  <div>
+    <label for="firstName" class={labelCls}>First Name *</label>
+    <input type="text" id="firstName" class="field-input" required />
+  </div>
+  <div>
+    <label for="lastName" class={labelCls}>Last Name *</label>
+    <input type="text" id="lastName" class="field-input" required />
+  </div>
+  <div>
+    <label for="email" class={labelCls}>Email Address *</label>
+    <input type="email" id="email" class="field-input" required />
+  </div>
+  <div>
+    <label for="phone" class={labelCls}>Phone Number *</label>
+    <input type="tel" id="phone" class="field-input" required />
+  </div>
+  <div>
+    <label for="company" class={labelCls}>Company Name</label>
+    <input type="text" id="company" class="field-input" />
+  </div>
+  <div>
+    <label for="projectLocation" class={labelCls}>Project Location</label>
+    <input type="text" id="projectLocation" class="field-input" placeholder="City, State" />
+  </div>
+
+  <div class="sm:col-span-2">
+    <label for="serviceType" class={labelCls}>Service Type *</label>
+    <select id="serviceType" class="field-input" required>
+      <option value="">Select a service...</option>
+      <option>Powerline Inspection</option>
+      <option>Substation Inspection</option>
+      <option>Solar Farm Inspection</option>
+      <option>Wind Turbine Inspection</option>
+      <option>Construction Progress Monitoring</option>
+      <option>Emergency Response</option>
+      <option>Multiple Services</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div class="sm:col-span-2">
+    <label for="projectDetails" class={labelCls}>Project Details *</label>
+    <textarea
+      id="projectDetails"
+      rows="5"
+      class="field-input h-auto"
+      placeholder="Please describe your project, timeline, and any specific requirements..."
+      required></textarea>
+  </div>
+
+  <div>
+    <label for="projectTimeline" class={labelCls}>Preferred Timeline</label>
+    <select id="projectTimeline" class="field-input">
+      <option value="">Select timeline...</option>
+      <option>Immediate (Emergency)</option>
+      <option>Within 1 week</option>
+      <option>Within 2 weeks</option>
+      <option>Within 1 month</option>
+      <option>More than 1 month</option>
+      <option>Ongoing/Regular Service</option>
+    </select>
+  </div>
+  <div>
+    <label for="budget" class={labelCls}>Estimated Budget</label>
+    <select id="budget" class="field-input">
+      <option value="">Select budget range...</option>
+      <option>Under $5,000</option>
+      <option>$5,000 - $10,000</option>
+      <option>$10,000 - $25,000</option>
+      <option>$25,000 - $50,000</option>
+      <option>Over $50,000</option>
+      <option>Not sure</option>
+    </select>
+  </div>
+
+  <div class="sm:col-span-2">
+    <span class={labelCls}>How did you hear about us?</span>
+    <div class="flex flex-wrap gap-x-6 gap-y-2">
+      {
+        [
+          { id: 'referralGoogle', label: 'Google Search' },
+          { id: 'referralSocial', label: 'Social Media' },
+          { id: 'referralWord', label: 'Word of Mouth' },
+        ].map((r) => (
+          <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <input
+              type="checkbox"
+              id={r.id}
+              class="text-brand-500 focus:ring-brand-500/30 h-4 w-4 rounded border-gray-300 dark:border-gray-700 dark:bg-gray-900"
+            />
+            {r.label}
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="sm:col-span-2">
+    <button type="submit" id="submitButton" class="btn-primary w-full sm:w-auto">
+      Submit Request
+    </button>
+    <div id="formMessage" class="mt-4 hidden rounded-lg border px-4 py-3 text-sm"></div>
+    <p class="mt-3 text-xs text-gray-400 dark:text-gray-500">* Required fields</p>
+  </div>
+</form>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script is:inline define:vars={{ phone: site.phone }}>
+  // EmailJS contact handler — reuses the original service/template/public key.
+  (function () {
+    if (window.emailjs) emailjs.init('Cdtl1liUEf-q04r30');
+
+    const form = document.getElementById('contactForm');
+    const submitButton = document.getElementById('submitButton');
+    const formMessage = document.getElementById('formMessage');
+    if (!form) return;
+
+    function showMessage(kind, message) {
+      const styles = {
+        success:
+          'border-success-500 bg-success-50 text-success-700 dark:bg-success-500/15 dark:text-success-500',
+        error:
+          'border-error-500 bg-error-50 text-error-700 dark:bg-error-500/15 dark:text-error-500',
+      };
+      formMessage.className = `mt-4 rounded-lg border px-4 py-3 text-sm ${styles[kind]}`;
+      formMessage.textContent = message;
+      if (kind === 'success') setTimeout(() => formMessage.classList.add('hidden'), 6000);
+    }
+
+    function checkedReferrals() {
+      const out = [];
+      if (document.getElementById('referralGoogle').checked) out.push('Google Search');
+      if (document.getElementById('referralSocial').checked) out.push('Social Media');
+      if (document.getElementById('referralWord').checked) out.push('Word of Mouth');
+      return out.join(', ') || 'Not specified';
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+
+      const data = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        company: document.getElementById('company').value,
+        projectLocation: document.getElementById('projectLocation').value,
+        serviceType: document.getElementById('serviceType').value,
+        projectDetails: document.getElementById('projectDetails').value,
+        projectTimeline: document.getElementById('projectTimeline').value,
+        budget: document.getElementById('budget').value,
+        referralSource: checkedReferrals(),
+        submissionDate: new Date().toLocaleString(),
+      };
+
+      emailjs.send('gmail_1', 'template_cb3vlel', data).then(
+        function () {
+          showMessage(
+            'success',
+            "Thank you for your inquiry! We'll get back to you within 24 hours.",
+          );
+          form.reset();
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit Request';
+        },
+        function (err) {
+          showMessage('error', `Something went wrong. Please try again or call us at ${phone}.`);
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit Request';
+          console.error('EmailJS error:', err);
+        },
+      );
+    });
+
+    // Phone number formatting
+    const phoneInput = document.getElementById('phone');
+    phoneInput?.addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length > 6) v = `(${v.slice(0, 3)}) ${v.slice(3, 6)}-${v.slice(6, 10)}`;
+      else if (v.length > 3) v = `(${v.slice(0, 3)}) ${v.slice(3)}`;
+      else if (v.length > 0) v = `(${v}`;
+      e.target.value = v;
+    });
+  })();
+</script>

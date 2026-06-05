@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { faqs, serviceCounties } from '../lib/site';
+
+const contactCards = [
+  {
+    icon: 'phone',
+    title: 'Call Us',
+    lines: ['Main: (210) 549-7015', 'Emergency: (210) 549-7015'],
+    note: 'Available 24/7 for emergencies',
+  },
+  {
+    icon: 'envelope',
+    title: 'Email Us',
+    lines: [
+      'General: info@banderaskyworks.com',
+      'Quotes: quotes@banderaskyworks.com',
+      'Support: support@banderaskyworks.com',
+    ],
+    note: '',
+  },
+  {
+    icon: 'clock',
+    title: 'Business Hours',
+    lines: ['Regular: Mon–Fri 8AM–6PM', 'Weekend: Sat 9AM–3PM', 'Emergency: 24/7 Available'],
+    note: '',
+  },
+];
+---
+
+<BaseLayout
+  title="Contact Bandera Skyworks | Free Drone Inspection Quote | (210) 549-7015"
+  description="Contact Bandera Skyworks for free drone inspection quotes. Call (210) 549-7015 or email info@banderaskyworks.com. 24/7 emergency response available in Texas Hill Country."
+  keywords="contact bandera skyworks, drone inspection quote, emergency drone services, texas hill country drone company, (210) 549-7015, free consultation"
+  canonical="/contact.html"
+  twitterCard="summary"
+>
+  <PageHeader title="Contact Us" crumb="Contact" />
+
+  <!-- Contact info -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-16 md:px-6">
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        contactCards.map((c) => (
+          <Card class="p-6">
+            <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 flex h-12 w-12 items-center justify-center rounded-xl">
+              <Icon name={c.icon} class="h-6 w-6" />
+            </div>
+            <h2 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white/90">{c.title}</h2>
+            <ul class="mt-3 space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
+              {c.lines.map((l) => (
+                <li>{l}</li>
+              ))}
+            </ul>
+            {c.note && <p class="mt-3 text-xs text-gray-400 dark:text-gray-500">{c.note}</p>}
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="border-y border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="mx-auto max-w-3xl px-4 py-20 md:px-6">
+      <div class="text-center">
+        <h2 class="text-title-sm font-semibold tracking-tight text-gray-900 dark:text-white/90">
+          Request a Free Quote
+        </h2>
+        <p class="mt-3 text-gray-600 dark:text-gray-400">
+          Tell us about your project and we'll provide a custom proposal within 24 hours.
+        </p>
+      </div>
+      <div class="mt-10">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- Service area -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+    <h2 class="text-title-sm font-semibold tracking-tight text-gray-900 dark:text-white/90">
+      Service Area
+    </h2>
+    <p class="mt-4 max-w-2xl text-gray-600 dark:text-gray-400">
+      Based in Bandera County, we provide professional drone services throughout Central and South
+      Texas. Our primary service area includes:
+    </p>
+    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        serviceCounties.map((county) => (
+          <div class="shadow-theme-xs flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-300">
+            <Icon name="mapPin" class="text-brand-500 h-4 w-4" />
+            {county}
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">
+      <strong class="text-gray-700 dark:text-gray-300">Note:</strong> We also provide services throughout
+      Texas for large projects. Contact us to discuss your location.
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="mx-auto max-w-3xl px-4 py-20 md:px-6">
+      <h2
+        class="text-title-sm text-center font-semibold tracking-tight text-gray-900 dark:text-white/90"
+      >
+        Frequently Asked Questions
+      </h2>
+      <div class="mt-10 space-y-3">
+        {
+          faqs.map((f) => (
+            <details class="group open:shadow-theme-sm rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-gray-900 marker:content-none dark:text-white/90">
+                {f.q}
+                <Icon
+                  name="arrowRight"
+                  class="h-4 w-4 shrink-0 text-gray-400 transition-transform group-open:rotate-90"
+                />
+              </summary>
+              <p class="border-t border-gray-100 px-5 py-4 text-sm text-gray-600 dark:border-gray-800 dark:text-gray-400">
+                {f.a}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
