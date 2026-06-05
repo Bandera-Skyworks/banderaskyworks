@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import Icon from '../components/Icon.astro';
+import { stats, services, whyChooseUs, businessJsonLd } from '../lib/site';
+
+const servicePreview = services.slice(0, 3);
+---
+
+<BaseLayout
+  title="Bandera Skyworks - Professional Drone Services | Texas Hill Country FAA Certified"
+  description="Professional drone inspection services in Texas Hill Country. FAA Part 107 certified powerline, substation, solar farm, and wind turbine inspections. 24/7 emergency response available."
+  keywords="drone services, aerial inspection, powerline inspection, substation inspection, solar farm inspection, wind turbine inspection, UAV services, Texas Hill Country, FAA certified, Bandera County"
+  canonical="/"
+  jsonLd={businessJsonLd}
+>
+  <!-- Hero -->
+  <section
+    class="relative overflow-hidden border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+  >
+    <div
+      class="bg-[radial-gradient(60%_60%_at_50%_0%,theme(colors.brand.50),transparent)] pointer-events-none absolute inset-0 dark:bg-[radial-gradient(60%_60%_at_50%_0%,rgba(70,95,255,0.12),transparent)]"
+    >
+    </div>
+    <div class="relative mx-auto max-w-(--breakpoint-xl) px-4 py-20 text-center md:px-6 md:py-28">
+      <div class="mx-auto flex justify-center">
+        <Badge color="primary">
+          <Icon name="shield" class="h-3.5 w-3.5" /> FAA Part 107 Certified · Fully Insured
+        </Badge>
+      </div>
+      <h1
+        class="text-title-md md:text-title-xl mx-auto mt-6 max-w-3xl font-semibold tracking-tight text-gray-900 dark:text-white/90"
+      >
+        Hill Country Drone Services
+      </h1>
+      <p class="md:text-theme-xl mx-auto mt-5 max-w-2xl text-base text-gray-600 dark:text-gray-400">
+        Professional aerial solutions for energy infrastructure and commercial applications across
+        the Texas Hill Country.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <a href="/contact.html" class="btn-primary">Get Free Quote</a>
+        <a href="/services.html" class="btn-outline">View Services</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mx-auto mt-16 grid max-w-3xl grid-cols-3 gap-4">
+        {
+          stats.map((s) => (
+            <Card class="px-4 py-6">
+              <div class="text-title-sm text-brand-500 md:text-title-md font-semibold">
+                {s.value}
+              </div>
+              <div class="mt-1 text-xs text-gray-500 sm:text-sm dark:text-gray-400">{s.label}</div>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Services preview -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-title-sm font-semibold tracking-tight text-gray-900 dark:text-white/90">
+        Our Services
+      </h2>
+      <p class="mt-3 text-gray-600 dark:text-gray-400">
+        Comprehensive drone solutions tailored for Texas infrastructure.
+      </p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        servicePreview.map((s) => (
+          <Card hover class="p-6">
+            <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 flex h-12 w-12 items-center justify-center rounded-xl">
+              <Icon name={s.icon} class="h-6 w-6" />
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white/90">{s.title}</h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{s.summary}</p>
+          </Card>
+        ))
+      }
+    </div>
+    <div class="mt-10 text-center">
+      <a href="/services.html" class="btn-primary">View All Services</a>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="border-y border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-title-sm font-semibold tracking-tight text-gray-900 dark:text-white/90">
+          Why Choose Bandera Skyworks
+        </h2>
+        <p class="mt-3 text-gray-600 dark:text-gray-400">
+          Texas-based expertise with cutting-edge technology.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          whyChooseUs.map((f) => (
+            <div class="text-center">
+              <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 mx-auto flex h-12 w-12 items-center justify-center rounded-xl">
+                <Icon name={f.icon} class="h-6 w-6" />
+              </div>
+              <h3 class="mt-4 font-semibold text-gray-900 dark:text-white/90">{f.title}</h3>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{f.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+    <div
+      class="bg-brand-500 shadow-theme-lg overflow-hidden rounded-2xl px-6 py-14 text-center md:px-12"
+    >
+      <h2 class="text-title-sm mx-auto max-w-2xl font-semibold tracking-tight text-white">
+        Ready to elevate your infrastructure inspections?
+      </h2>
+      <p class="text-brand-100 mx-auto mt-4 max-w-xl">
+        Join leading Texas utilities and businesses who trust Bandera Skyworks.
+      </p>
+      <a
+        href="/contact.html"
+        class="text-brand-600 shadow-theme-xs hover:bg-brand-25 mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3.5 text-sm font-medium transition-colors"
+      >
+        Schedule Free Consultation
+      </a>
+    </div>
+  </section>
+</BaseLayout>

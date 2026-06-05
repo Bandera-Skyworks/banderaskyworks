@@ -22,6 +22,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+        cache: npm
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build site
+      run: npm run build
+
     - name: Setup Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v2
       with:
@@ -87,23 +99,17 @@ jobs:
         EOF
 
         # Copy files to VM
-        echo "Copying files to VM..."
-        # Create deployment directory structure on VM first
+        echo "Copying built site to VM..."
+        # Reset the staging directory on the VM
         gcloud compute ssh ${{ env.VM_NAME }} \
           --zone=${{ env.ZONE }} \
-          --command="mkdir -p /tmp/deployment/assets/{css,js,images}"
+          --command="rm -rf /tmp/deployment && mkdir -p /tmp/deployment"
         
-        # Copy HTML files
+        # Copy the contents of the Astro build output (dist/) to the VM
         gcloud compute scp --recurse \
           --zone=${{ env.ZONE }} \
-          ./*.html \
+          ./dist/. \
           ${{ env.VM_NAME }}:/tmp/deployment/
-        
-        # Copy assets
-        gcloud compute scp --recurse \
-          --zone=${{ env.ZONE }} \
-          ./assets/* \
-          ${{ env.VM_NAME }}:/tmp/deployment/assets/
 
         # Execute deployment script
         echo "Running deployment script..."

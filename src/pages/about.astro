@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+import { certifications } from '../lib/site';
+
+const foundation = [
+  {
+    icon: 'alert',
+    title: 'Mission',
+    body: 'To revolutionize infrastructure inspection through innovative drone technology, providing safer, faster, and more cost-effective solutions that empower our clients to maintain reliable services for their communities.',
+  },
+  {
+    icon: 'chart',
+    title: 'Vision',
+    body: 'To be the premier drone service provider in Texas, recognized for our technical excellence, safety standards, and commitment to advancing the future of aerial inspections.',
+  },
+  {
+    icon: 'shield',
+    title: 'Values',
+    body: 'Safety First · Innovation · Integrity · Excellence · Community Focus · Environmental Stewardship · Continuous Learning · Client Partnership',
+  },
+];
+---
+
+<BaseLayout
+  title="About Bandera Skyworks | FAA Certified Drone Pilots | Texas Hill Country"
+  description="Learn about Bandera Skyworks, Texas Hill Country's leading drone inspection company. FAA Part 107 certified pilots with $5M liability insurance providing professional aerial services."
+  keywords="about bandera skyworks, drone company texas, FAA certified pilots, aerial inspection company, texas hill country drone services, professional UAV operators"
+  canonical="/about.html"
+>
+  <PageHeader title="About Us" crumb="About" />
+
+  <!-- Intro -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-16 md:px-6 md:py-20">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-title-sm font-semibold tracking-tight text-gray-900 dark:text-white/90">
+          Leading the future of aerial inspections in Texas
+        </h2>
+        <p class="text-theme-xl mt-5 text-gray-600 dark:text-gray-400">
+          Since our founding, Bandera Skyworks has been at the forefront of drone technology
+          innovation in the Texas Hill Country.
+        </p>
+        <p class="mt-4 text-gray-600 dark:text-gray-400">
+          We specialize in providing cutting-edge aerial inspection services to utilities, energy
+          companies, and commercial enterprises throughout Texas. Our team combines advanced drone
+          technology with deep industry expertise to deliver unparalleled insights that help our
+          clients maintain critical infrastructure, reduce costs, and enhance safety.
+        </p>
+        <p class="mt-4 text-gray-600 dark:text-gray-400">
+          Located in the heart of the Hill Country, we understand the unique challenges Texas
+          businesses face — from vast powerline networks spanning rugged terrain to remote
+          substations requiring regular monitoring.
+        </p>
+      </div>
+      <Card class="overflow-hidden">
+        <img
+          src="/assets/images/pl-inspection.png"
+          alt="Drone powerline inspection operations"
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </Card>
+    </div>
+  </section>
+
+  <!-- Foundation -->
+  <section class="border-y border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+      <h2
+        class="text-title-sm text-center font-semibold tracking-tight text-gray-900 dark:text-white/90"
+      >
+        Our Foundation
+      </h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          foundation.map((f) => (
+            <Card class="p-6">
+              <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 flex h-12 w-12 items-center justify-center rounded-xl">
+                <Icon name={f.icon} class="h-6 w-6" />
+              </div>
+              <h3 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white/90">{f.title}</h3>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{f.body}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+    <h2
+      class="text-title-sm text-center font-semibold tracking-tight text-gray-900 dark:text-white/90"
+    >
+      Our Expert Team
+    </h2>
+    <div class="mt-12 flex justify-center">
+      <Card class="max-w-sm p-8 text-center">
+        <div
+          class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 mx-auto flex h-20 w-20 items-center justify-center rounded-full"
+        >
+          <Icon name="plane" class="h-9 w-9" />
+        </div>
+        <h3 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white/90">Tony Guntharp</h3>
+        <p class="text-brand-500 text-sm font-medium">Founder &amp; Chief Pilot</p>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+          FAA Part 107 certified, specializes in utility infrastructure inspections.
+        </p>
+      </Card>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+      <h2
+        class="text-title-sm text-center font-semibold tracking-tight text-gray-900 dark:text-white/90"
+      >
+        Certifications &amp; Memberships
+      </h2>
+      <div class="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
+        {
+          certifications.map((c) => (
+            <div class="text-center">
+              <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 mx-auto flex h-12 w-12 items-center justify-center rounded-xl">
+                <Icon name={c.icon} class="h-6 w-6" />
+              </div>
+              <h3 class="mt-3 text-sm font-semibold text-gray-900 dark:text-white/90">{c.title}</h3>
+              <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{c.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+
+const links = [
+  {
+    icon: 'alert',
+    title: 'Emergency Services',
+    body: '24/7 emergency response for critical infrastructure needs.',
+    href: '/contact.html',
+    cta: 'Get Help Now',
+  },
+  {
+    icon: 'drone',
+    title: 'Inspection Services',
+    body: 'Professional powerline, solar, and infrastructure inspections.',
+    href: '/services.html',
+    cta: 'View Services',
+  },
+  {
+    icon: 'phone',
+    title: 'Get a Quote',
+    body: 'Free consultation and custom quotes for your project needs.',
+    href: '/contact.html',
+    cta: 'Contact Us',
+  },
+];
+---
+
+<BaseLayout
+  title="Page Not Found - Bandera Skyworks"
+  description="The page you're looking for couldn't be found. Return to Bandera Skyworks homepage for professional drone services in Texas Hill Country."
+  canonical="/404.html"
+  noindex
+>
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-24 text-center md:px-6">
+    <p class="text-title-xl text-brand-500 md:text-title-2xl font-semibold">404</p>
+    <h1 class="text-title-sm mt-2 font-semibold tracking-tight text-gray-900 dark:text-white/90">
+      Page Not Found
+    </h1>
+    <p class="mx-auto mt-4 max-w-md text-gray-600 dark:text-gray-400">
+      The page you're looking for seems to have flown away. Let's get you back on course.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn-primary"><Icon name="home" class="h-5 w-5" /> Return Home</a>
+      <a href="/services.html" class="btn-outline"
+        ><Icon name="drone" class="h-5 w-5" /> View Services</a
+      >
+      <a href="/contact.html" class="btn-outline"
+        ><Icon name="phone" class="h-5 w-5" /> Contact Us</a
+      >
+    </div>
+
+    <div class="mt-16 grid gap-6 text-left md:grid-cols-3">
+      {
+        links.map((l) => (
+          <Card hover class="p-6">
+            <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 flex h-12 w-12 items-center justify-center rounded-xl">
+              <Icon name={l.icon} class="h-6 w-6" />
+            </div>
+            <h2 class="mt-5 font-semibold text-gray-900 dark:text-white/90">{l.title}</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{l.body}</p>
+            <a
+              href={l.href}
+              class="text-brand-500 hover:text-brand-600 mt-4 inline-flex items-center gap-1.5 text-sm font-medium"
+            >
+              {l.cta}
+              <Icon name="arrowRight" class="h-4 w-4" />
+            </a>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

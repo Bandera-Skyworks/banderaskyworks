@@ -1,0 +1,18 @@
+---
+// Mirrors UAS-Log's component-card: rounded-2xl, gray-200 border, white surface,
+// near-transparent white in dark mode, soft theme shadow.
+interface Props {
+  class?: string;
+  hover?: boolean;
+}
+const { class: className = '', hover = false } = Astro.props;
+const hoverCls = hover
+  ? 'transition-shadow hover:shadow-theme-lg hover:-translate-y-0.5 transition-transform'
+  : '';
+---
+
+<div
+  class={`rounded-2xl border border-gray-200 bg-white shadow-theme-sm dark:border-gray-800 dark:bg-white/[0.03] ${hoverCls} ${className}`.trim()}
+>
+  <slot />
+</div>

@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  crumb: string;
+}
+const { title, crumb } = Astro.props;
+---
+
+<section class="border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+  <div class="mx-auto max-w-(--breakpoint-xl) px-4 py-12 md:px-6 md:py-16">
+    <h1
+      class="text-title-sm md:text-title-md font-semibold tracking-tight text-gray-900 dark:text-white/90"
+    >
+      {title}
+    </h1>
+    <nav aria-label="Breadcrumb" class="mt-3">
+      <ol class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+        <li><a href="/" class="hover:text-brand-500">Home</a></li>
+        <li><Icon name="arrowRight" class="h-4 w-4 text-gray-400" /></li>
+        <li class="font-medium text-gray-700 dark:text-gray-300">{crumb}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
