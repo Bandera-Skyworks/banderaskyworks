@@ -116,11 +116,11 @@ const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-
   </div>
 </form>
 
-<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script is:inline define:vars={{ phone: site.phone }}>
   // EmailJS contact handler — reuses the original service/template/public key.
   (function () {
-    if (window.emailjs) emailjs.init('Cdtl1liUEf-q04r30');
+    if (window.emailjs) emailjs.init({ publicKey: 'Cdtl1liUEf-q04r30' });
 
     const form = document.getElementById('contactForm');
     const submitButton = document.getElementById('submitButton');
