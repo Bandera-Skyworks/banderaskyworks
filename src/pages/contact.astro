@@ -6,7 +6,13 @@ import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { site, faqs, serviceCounties } from '../lib/site';
 
-const contactCards = [
+interface ContactLine {
+  label: string;
+  value: string;
+  href?: string;
+}
+
+const contactCards: { icon: string; title: string; lines: ContactLine[]; note: string }[] = [
   {
     icon: 'phone',
     title: 'Call Us',
