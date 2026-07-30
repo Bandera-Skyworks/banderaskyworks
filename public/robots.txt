@@ -18,7 +18,7 @@ Disallow: /.git/
 Disallow: /.github/
 
 # Sitemap location
-Sitemap: https://banderaskyworks.com/sitemap.xml
+Sitemap: https://banderaskyworks.com/sitemap-index.xml
 
 # Crawl delay (optional - 1 second)
 Crawl-delay: 1
