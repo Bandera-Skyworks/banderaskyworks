@@ -58,13 +58,14 @@ export const services = [
   {
     icon: 'bolt',
     title: 'Powerline Inspections',
+    pricing: 'Starting at $400 per mile',
     summary:
       'Advanced aerial inspection of transmission and distribution lines with thermal imaging.',
     description:
       'Our comprehensive powerline inspection services leverage cutting-edge automated flight technology and high-resolution imaging systems to transform how utilities monitor their infrastructure. We provide detailed assessments of transmission and distribution lines across the Texas Hill Country.',
     features: [
       'Thermal imaging for hot spot detection and equipment failures',
-      'Vegetation encroachment analysis and clearance measurements',
+      'Vegetation encroachment monitoring with laser-ranged clearance estimates',
       'Insulator inspection for cracks, chips, and contamination',
       'Conductor and hardware assessment for wear and damage',
       'Storm damage rapid assessment and documentation',
@@ -72,7 +73,7 @@ export const services = [
     ],
     benefits: [
       { title: 'Cost Reduction', body: '90% less than helicopter inspections' },
-      { title: 'Faster Coverage', body: 'Inspect 50+ miles per day' },
+      { title: 'Faster Coverage', body: 'Inspect 25+ miles per day' },
       { title: 'Enhanced Safety', body: 'No crew exposure to hazards' },
       { title: 'Predictive Data', body: 'AI-powered failure prediction' },
     ],
@@ -80,15 +81,15 @@ export const services = [
   {
     icon: 'industry',
     title: 'Substation Inspections',
+    pricing: 'Starting at $1,500 per substation',
     summary: 'Live substation monitoring with radiometric thermal cameras and optical zoom.',
     description:
       'Transform your substation maintenance program with our comprehensive aerial inspection services that combine cutting-edge radiometric thermal imaging technology with ultra-high-resolution optical zoom cameras. We inspect live substations without service interruptions.',
     features: [
       'Radiometric thermal analysis with temperature measurements',
-      '60x optical zoom for detailed component inspection',
+      '16x optical / 200x hybrid zoom for detailed component inspection',
       'Oil leak detection on transformers and equipment',
       'Bushing and insulator condition assessment',
-      'SF6 gas leak detection capabilities',
       'Structural integrity evaluation',
     ],
     benefits: [
@@ -101,6 +102,7 @@ export const services = [
   {
     icon: 'solar',
     title: 'Solar Farm Inspections',
+    pricing: 'Starting at $350 per MW',
     summary: 'Comprehensive PV system analysis to maximize energy production.',
     description:
       'Maximize your solar investment with our comprehensive PV system inspections. Using advanced thermal imaging, we quickly identify underperforming panels, hot spots, and maintenance issues across large solar arrays.',
@@ -114,7 +116,7 @@ export const services = [
     ],
     benefits: [
       { title: 'Increased Output', body: 'Identify underperforming panels' },
-      { title: 'Rapid Inspection', body: '100+ MW inspected daily' },
+      { title: 'Rapid Inspection', body: 'Up to 80 MW inspected daily' },
       { title: 'Targeted Maintenance', body: 'Prioritize repairs effectively' },
       { title: 'ROI Tracking', body: 'Monitor performance trends' },
     ],
@@ -122,6 +124,7 @@ export const services = [
   {
     icon: 'wind',
     title: 'Wind Turbine Inspections',
+    pricing: 'Starting at $450 per turbine',
     summary: 'High-resolution blade and tower inspection without costly downtime.',
     description:
       'Comprehensive blade and tower inspections without costly downtime. Our high-resolution imaging captures defects invisible from the ground, enabling proactive maintenance that extends turbine life and maximizes energy production.',
@@ -134,7 +137,7 @@ export const services = [
       'Ice accumulation monitoring',
     ],
     benefits: [
-      { title: 'No Downtime', body: 'Inspect while operational' },
+      { title: 'Minimal Downtime', body: 'No cranes or rope crews' },
       { title: 'Early Detection', body: 'Find issues before failure' },
       { title: 'Safer Inspections', body: 'No rope access required' },
       { title: 'Faster Turnaround', body: 'Complete farm in days' },
@@ -143,6 +146,7 @@ export const services = [
   {
     icon: 'hardhat',
     title: 'Construction Progress Monitoring',
+    pricing: 'Starting at $750 per visit',
     summary: 'Regular aerial documentation, 3D mapping, and volumetric calculations.',
     description:
       'Track construction progress with regular aerial documentation and 3D mapping. Our services provide stakeholders with comprehensive visual updates, volumetric calculations, and timeline verification throughout the project lifecycle.',
@@ -164,6 +168,7 @@ export const services = [
   {
     icon: 'alert',
     title: 'Emergency Response Services',
+    pricing: 'Starting at $1,500 per deployment',
     summary: '24/7 rapid deployment for storm damage and critical infrastructure.',
     description:
       '24/7 rapid deployment for storm damage assessment and critical infrastructure inspection. When disasters strike, our emergency response team provides immediate aerial intelligence to accelerate recovery efforts and restoration planning.',
