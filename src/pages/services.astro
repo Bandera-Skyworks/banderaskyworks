@@ -27,7 +27,12 @@ import { services, industries } from '../lib/site';
         services.map((s) => (
           <Card class="overflow-hidden">
             <div class="flex items-center justify-between gap-4 border-b border-gray-100 px-6 py-5 dark:border-gray-800">
-              <h2 class="text-lg font-semibold text-gray-900 dark:text-white/90">{s.title}</h2>
+              <div>
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white/90">{s.title}</h2>
+                <p class="text-brand-500 dark:text-brand-400 mt-0.5 text-sm font-medium">
+                  {s.pricing}
+                </p>
+              </div>
               <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
                 <Icon name={s.icon} class="h-6 w-6" />
               </div>
@@ -70,6 +75,14 @@ import { services, industries } from '../lib/site';
         ))
       }
     </div>
+
+    <p class="mx-auto mt-8 max-w-3xl text-center text-sm text-gray-500 dark:text-gray-400">
+      Starting rates reflect typical projects in the Texas Hill Country. Final pricing depends on
+      site size, sensor requirements, and reporting depth —
+      <a href="/contact.html" class="text-brand-500 dark:text-brand-400 font-medium hover:underline"
+        >contact us</a
+      > for a custom quote.
+    </p>
   </section>
 
   <!-- Industries -->
