@@ -4,7 +4,12 @@ import { site } from '../lib/site';
 const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300';
 ---
 
-<form id="contactForm" class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+<form id="contactForm" class="relative grid grid-cols-1 gap-5 sm:grid-cols-2">
+  <!-- Honeypot: invisible to humans, bots tend to fill every field -->
+  <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+    <label for="website">Website</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
   <div>
     <label for="firstName" class={labelCls}>First Name *</label>
     <input type="text" id="firstName" class="field-input" required />
@@ -142,8 +147,21 @@ const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-
       return out.join(', ') || 'Not specified';
     }
 
+    const loadedAt = Date.now();
+    const SUCCESS_MESSAGE = "Thank you for your inquiry! We'll get back to you within 24 hours.";
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // Spam guards: a filled honeypot or a submit within 3s of page load
+      // is almost certainly a bot — pretend success without sending.
+      const honeypot = document.getElementById('website').value;
+      if (honeypot || Date.now() - loadedAt < 3000) {
+        form.reset();
+        showMessage('success', SUCCESS_MESSAGE);
+        return;
+      }
+
       submitButton.disabled = true;
       submitButton.textContent = 'Sending…';
 
@@ -164,10 +182,7 @@ const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-
 
       emailjs.send('gmail_1', 'template_cb3vlel', data).then(
         function () {
-          showMessage(
-            'success',
-            "Thank you for your inquiry! We'll get back to you within 24 hours.",
-          );
+          showMessage('success', SUCCESS_MESSAGE);
           form.reset();
           submitButton.disabled = false;
           submitButton.textContent = 'Submit Request';
