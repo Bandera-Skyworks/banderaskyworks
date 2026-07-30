@@ -14,6 +14,7 @@
     "format": "prettier --write \"src/**/*.{astro,ts,js,css,md}\""
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "astro": "^5.6.1"
   },
   "devDependencies": {
