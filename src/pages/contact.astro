@@ -4,29 +4,48 @@ import PageHeader from '../components/PageHeader.astro';
 import Card from '../components/Card.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { faqs, serviceCounties } from '../lib/site';
+import { site, faqs, serviceCounties } from '../lib/site';
 
 const contactCards = [
   {
     icon: 'phone',
     title: 'Call Us',
-    lines: ['Main: (210) 549-7015', 'Emergency: (210) 549-7015'],
+    lines: [
+      { label: 'Main', value: site.phone, href: site.phoneHref },
+      { label: 'Emergency', value: site.phone, href: site.phoneHref },
+    ],
     note: 'Available 24/7 for emergencies',
   },
   {
     icon: 'envelope',
     title: 'Email Us',
     lines: [
-      'General: info@banderaskyworks.com',
-      'Quotes: quotes@banderaskyworks.com',
-      'Support: support@banderaskyworks.com',
+      {
+        label: 'General',
+        value: 'info@banderaskyworks.com',
+        href: 'mailto:info@banderaskyworks.com',
+      },
+      {
+        label: 'Quotes',
+        value: 'quotes@banderaskyworks.com',
+        href: 'mailto:quotes@banderaskyworks.com',
+      },
+      {
+        label: 'Support',
+        value: 'support@banderaskyworks.com',
+        href: 'mailto:support@banderaskyworks.com',
+      },
     ],
     note: '',
   },
   {
     icon: 'clock',
     title: 'Business Hours',
-    lines: ['Regular: Mon–Fri 8AM–6PM', 'Weekend: Sat 9AM–3PM', 'Emergency: 24/7 Available'],
+    lines: [
+      { label: 'Regular', value: 'Mon–Fri 8AM–6PM' },
+      { label: 'Weekend', value: 'Sat 9AM–3PM' },
+      { label: 'Emergency', value: '24/7 Available' },
+    ],
     note: '',
   },
 ];
@@ -53,7 +72,19 @@ const contactCards = [
             <h2 class="mt-5 text-lg font-semibold text-gray-900 dark:text-white/90">{c.title}</h2>
             <ul class="mt-3 space-y-1.5 text-sm text-gray-600 dark:text-gray-400">
               {c.lines.map((l) => (
-                <li>{l}</li>
+                <li>
+                  {l.label}:{' '}
+                  {l.href ? (
+                    <a
+                      href={l.href}
+                      class="text-brand-500 dark:text-brand-400 font-medium hover:underline"
+                    >
+                      {l.value}
+                    </a>
+                  ) : (
+                    l.value
+                  )}
+                </li>
               ))}
             </ul>
             {c.note && <p class="mt-3 text-xs text-gray-400 dark:text-gray-500">{c.note}</p>}
