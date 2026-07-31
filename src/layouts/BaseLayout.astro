@@ -67,6 +67,13 @@ const canonicalUrl = new URL(canonical, site.url).href;
 
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
+    <!-- Umami analytics -->
+    <script
+      is:inline
+      defer
+      src="https://analytics.damagelabs.io/script.js"
+      data-website-id="3a4adee1-1825-4316-8c1c-cb4580635d9a"></script>
+
     <!-- Apply persisted theme before paint to avoid a flash of the wrong theme -->
     <script is:inline>
       (() => {
