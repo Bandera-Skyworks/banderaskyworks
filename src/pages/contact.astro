@@ -12,6 +12,16 @@ interface ContactLine {
   href?: string;
 }
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 const contactCards: { icon: string; title: string; lines: ContactLine[]; note: string }[] = [
   {
     icon: 'phone',
@@ -63,6 +73,7 @@ const contactCards: { icon: string; title: string; lines: ContactLine[]; note: s
   keywords="contact bandera skyworks, drone inspection quote, emergency drone services, texas hill country drone company, (210) 549-7015, free consultation"
   canonical="/contact.html"
   twitterCard="summary"
+  jsonLd={faqJsonLd}
 >
   <PageHeader title="Contact Us" crumb="Contact" />
 
