@@ -264,8 +264,16 @@ export const faqs = [
     a: 'We provide comprehensive deliverables including high-resolution photos and videos, thermal imaging reports, orthomosaic maps, 3D models, detailed inspection reports with annotations, and custom analytics based on your specific needs. All data is delivered via secure cloud storage within 48-72 hours of inspection.',
   },
   {
+    q: 'How much do drone inspections cost?',
+    a: 'Pricing scales with scope: powerline inspections start at $400 per mile, substation inspections at $1,500 per site, solar farms at $350 per MW, wind turbines at $450 per turbine, construction monitoring at $750 per visit, and emergency response at $1,500 per deployment. Final pricing depends on site size, sensor requirements, and reporting depth — every project receives a custom quote within 24 hours.',
+  },
+  {
     q: 'Are you FAA certified and insured?',
     a: 'Yes, all our pilots are FAA Part 107 certified and maintain current certifications. We carry $5 million in liability insurance and are fully compliant with all federal, state, and local regulations. We can provide certificates of insurance for your records.',
+  },
+  {
+    q: 'Do you handle FAA airspace authorization?',
+    a: 'Yes. We manage all airspace requirements for every flight, including LAANC authorization for operations in controlled airspace and any waivers a mission may require. Regulatory compliance is part of the service — your team doesn’t need to file anything.',
   },
   {
     q: 'How do you handle data security and privacy?',
@@ -273,7 +281,7 @@ export const faqs = [
   },
   {
     q: 'What weather conditions can you fly in?',
-    a: 'Our drones can operate in winds up to 35 mph and light rain conditions. We cannot fly in thunderstorms, heavy rain, or icing conditions for safety reasons. We monitor weather closely and will reschedule if conditions are unsafe, with no cancellation fees for weather-related delays.',
+    a: 'Our drones can operate in winds up to 33 mph (15 m/s) and light rain conditions. We cannot fly in thunderstorms, heavy rain, or icing conditions for safety reasons. We monitor weather closely and will reschedule if conditions are unsafe, with no cancellation fees for weather-related delays.',
   },
 ];
 
