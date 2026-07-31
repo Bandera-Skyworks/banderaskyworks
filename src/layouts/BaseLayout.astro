@@ -8,7 +8,6 @@ import { site } from '../lib/site';
 interface Props {
   title: string;
   description: string;
-  keywords?: string;
   canonical: string;
   ogImage?: string;
   ogType?: string;
@@ -20,7 +19,6 @@ interface Props {
 const {
   title,
   description,
-  keywords,
   canonical,
   ogImage = `${site.url}/assets/images/bsw-logo-new.jpg`,
   ogType = 'website',
@@ -39,7 +37,6 @@ const canonicalUrl = new URL(canonical, site.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {keywords && <meta name="keywords" content={keywords} />}
     <meta name="author" content="Bandera Skyworks" />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <link rel="canonical" href={canonicalUrl} />

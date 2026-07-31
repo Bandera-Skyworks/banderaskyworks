@@ -3,15 +3,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Card from '../components/Card.astro';
 import Icon from '../components/Icon.astro';
-import { services, industries } from '../lib/site';
+import { site, services, industries } from '../lib/site';
+
+const servicesJsonLd = services.map((s) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.title,
+  serviceType: s.title,
+  description: s.summary,
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': `${site.url}/#business`,
+    name: site.name,
+    telephone: site.phone,
+    url: site.url,
+  },
+  areaServed: 'Texas Hill Country',
+  offers: {
+    '@type': 'Offer',
+    description: s.pricing,
+    priceCurrency: 'USD',
+  },
+}));
 ---
 
 <BaseLayout
   title="Drone Inspection Services | Powerline, Solar, Wind Turbine | Bandera Skyworks"
   description="Professional drone inspection services: powerline inspection, substation monitoring, solar farm analysis, wind turbine inspection, and emergency response. Serving Texas Hill Country with FAA certified pilots."
-  keywords="powerline inspection, substation inspection, solar farm inspection, wind turbine inspection, drone services texas, aerial inspection, infrastructure monitoring, emergency response"
   canonical="/services.html"
   ogImage="https://banderaskyworks.com/assets/images/pl-inspection.jpg"
+  jsonLd={servicesJsonLd}
 >
   <PageHeader title="Our Services" crumb="Services" />
 
