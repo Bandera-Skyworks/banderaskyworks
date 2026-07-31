@@ -14,8 +14,8 @@ export const site = {
     twitter: 'https://x.com/BanderaSkyworks',
     instagram: 'https://www.instagram.com/banderaskyworks/',
   },
-  logo: '/assets/images/bsw-logo-new.png',
-  icon: '/assets/images/bsw-icon.png',
+  logo: '/assets/images/bsw-logo-new.jpg',
+  icon: '/assets/images/bsw-icon-64.webp',
 };
 
 export const nav = [
@@ -284,7 +284,7 @@ export const businessJsonLd = {
   '@id': 'https://banderaskyworks.com/#business',
   name: 'Bandera Skyworks',
   url: 'https://banderaskyworks.com',
-  logo: 'https://banderaskyworks.com/assets/images/bsw-logo-new.png',
+  logo: 'https://banderaskyworks.com/assets/images/bsw-logo-new.jpg',
   description:
     'Professional drone inspection services for energy infrastructure, construction monitoring, and commercial applications in Texas Hill Country.',
   telephone: '+1-210-549-7015',

@@ -22,7 +22,7 @@ const {
   description,
   keywords,
   canonical,
-  ogImage = `${site.url}/assets/images/bsw-logo-new.png`,
+  ogImage = `${site.url}/assets/images/bsw-logo-new.jpg`,
   ogType = 'website',
   twitterCard = 'summary_large_image',
   noindex = false,
@@ -62,8 +62,8 @@ const canonicalUrl = new URL(canonical, site.url).href;
     <meta property="twitter:site" content="@BanderaSkyworks" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/images/bsw-icon.png" />
-    <link rel="apple-touch-icon" href="/assets/images/bsw-icon.png" />
+    <link rel="icon" type="image/png" href="/assets/images/bsw-icon-48.png" />
+    <link rel="apple-touch-icon" href="/assets/images/bsw-icon-180.png" />
 
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
