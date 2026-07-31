@@ -6,6 +6,7 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
+  ...astro.configs['jsx-a11y-recommended'],
   {
     ignores: ['dist/', '.astro/', 'node_modules/', 'public/assets/js/'],
   },
