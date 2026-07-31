@@ -15,7 +15,7 @@ export const site = {
     instagram: 'https://www.instagram.com/banderaskyworks/',
   },
   logo: '/assets/images/bsw-logo-new.png',
-  icon: '/assets/images/bsw-icon.png',
+  icon: '/assets/images/bsw-icon-64.webp',
 };
 
 export const nav = [
