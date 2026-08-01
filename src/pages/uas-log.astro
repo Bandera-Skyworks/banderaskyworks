@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../lib/site';
+
+const features = [
+  {
+    icon: 'plane',
+    title: 'Flight Logging',
+    body: 'Every flight captured with GPS location, weather, airspace class, altitude, mission type, and Part 107 certification statements.',
+  },
+  {
+    icon: 'check',
+    title: 'Pre-flight Checklists',
+    body: 'A 19-item FAA default template plus custom checklists, required before any flight can be submitted.',
+  },
+  {
+    icon: 'drone',
+    title: 'Fleet Management',
+    body: 'Aircraft records with Remote ID, firmware history, calibrations, components, and anti-collision lighting.',
+  },
+  {
+    icon: 'bolt',
+    title: 'Battery Tracking',
+    body: 'Cycle counts and event history for every pack, linked to the flights and sessions that used them.',
+  },
+  {
+    icon: 'oil',
+    title: 'Maintenance',
+    body: 'Maintenance logs, recurring schedules, and templates that keep the fleet airworthy and audit-ready.',
+  },
+  {
+    icon: 'shield',
+    title: 'FAA Compliance',
+    body: 'Waivers, LAANC authorizations, night and BVLOS operations, and incident reporting in one place.',
+  },
+  {
+    icon: 'mapPin',
+    title: 'Flight Map',
+    body: 'Interactive map of every logged flight with airspace and TFR overlays.',
+  },
+  {
+    icon: 'chart',
+    title: 'Reports & Import',
+    body: 'Exportable reports for audits and insurance, plus CSV import from DJI, Autel, and Skydio flight logs.',
+  },
+];
+
+const uasLogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'UAS-Log',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: 'https://demo.uas-log.com/',
+  description:
+    'A drone flight logging, fleet maintenance, and FAA Part 107 compliance platform built and operated by Bandera Skyworks.',
+  publisher: { '@type': 'LocalBusiness', '@id': `${site.url}/#business`, name: site.name },
+};
+---
+
+<BaseLayout
+  title="UAS-Log | Drone Flight Logging & FAA Compliance Platform | Bandera Skyworks"
+  description="UAS-Log is the flight logging, fleet maintenance, and FAA Part 107 compliance platform built by Bandera Skyworks — the same software that runs our own drone operations."
+  canonical="/uas-log.html"
+  ogImage="https://banderaskyworks.com/assets/images/uaslog-dashboard.webp"
+  jsonLd={uasLogJsonLd}
+>
+  <PageHeader title="UAS-Log" crumb="UAS-Log" />
+
+  <!-- Intro -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-16 md:px-6 md:py-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-theme-xl text-gray-600 dark:text-gray-400">
+        UAS-Log is the flight operations platform we built to run our own business — a complete
+        logbook for drone flights, fleet maintenance, and FAA Part 107 compliance. Every Bandera
+        Skyworks mission is planned, logged, and audited in UAS-Log.
+      </p>
+      <p class="mt-4 text-gray-600 dark:text-gray-400">
+        When a client asks how we document our work, this is the answer: pre-flight checklists,
+        GPS-tracked flights, battery and maintenance history, and compliance records for every
+        aircraft in the fleet. See it for yourself in the
+        <a
+          href="https://demo.uas-log.com/"
+          target="_blank"
+          rel="noopener"
+          class="text-brand-500 dark:text-brand-400 font-medium hover:underline">live demo</a
+        >.
+      </p>
+    </div>
+
+    <!-- Screenshots -->
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <Card class="overflow-hidden">
+        <img
+          src="/assets/images/uaslog-dashboard.webp"
+          alt="UAS-Log dashboard showing flight statistics and fleet utilization charts"
+          class="h-96 w-full object-cover object-top"
+          loading="lazy"
+        />
+      </Card>
+      <Card class="overflow-hidden">
+        <img
+          src="/assets/images/uaslog-flights.webp"
+          alt="UAS-Log flight log list with mission details and durations"
+          class="h-96 w-full object-cover object-top"
+          loading="lazy"
+        />
+      </Card>
+      <Card class="overflow-hidden">
+        <img
+          src="/assets/images/uaslog-map.webp"
+          alt="UAS-Log interactive flight map with airspace overlays"
+          class="h-96 w-full object-cover object-top"
+          loading="lazy"
+        />
+      </Card>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="border-y border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-title-sm font-semibold tracking-tight text-gray-900 dark:text-white/90">
+          What UAS-Log Does
+        </h2>
+        <p class="mt-3 text-gray-600 dark:text-gray-400">
+          Purpose-built for Part 107 commercial operators.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          features.map((f) => (
+            <Card hover class="p-6">
+              <div class="bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400 flex h-12 w-12 items-center justify-center rounded-xl">
+                <Icon name={f.icon} class="h-6 w-6" />
+              </div>
+              <h3 class="mt-5 font-semibold text-gray-900 dark:text-white/90">{f.title}</h3>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{f.body}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it matters to clients -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-6">
+    <div class="mx-auto max-w-3xl">
+      <h2
+        class="text-title-sm text-center font-semibold tracking-tight text-gray-900 dark:text-white/90"
+      >
+        Why It Matters to Our Clients
+      </h2>
+      <div class="mt-8 space-y-4 text-gray-600 dark:text-gray-400">
+        <p>
+          Hiring a drone operator means trusting their process, not just their aircraft. UAS-Log is
+          that process, in software: no flight happens without a completed checklist, no aircraft
+          flies past its maintenance schedule, and every mission produces a defensible record —
+          who flew, where, when, in what airspace, and under what authorization.
+        </p>
+        <p>
+          For utilities and enterprises with their own audit requirements, that means we can hand
+          over flight records, incident history, and compliance documentation for any engagement,
+          on request.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-(--breakpoint-xl) px-4 pb-20 md:px-6">
+    <div
+      class="bg-brand-500 shadow-theme-lg overflow-hidden rounded-2xl px-6 py-14 text-center md:px-12"
+    >
+      <h2 class="text-title-sm mx-auto max-w-2xl font-semibold tracking-tight text-white">
+        Want to see how we run our operations?
+      </h2>
+      <p class="text-brand-100 mx-auto mt-4 max-w-xl">
+        Explore the live demo, or ask about UAS-Log and our documentation process when you request
+        a quote.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="https://demo.uas-log.com/"
+          target="_blank"
+          rel="noopener"
+          class="text-brand-600 shadow-theme-xs hover:bg-brand-25 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3.5 text-sm font-medium transition-colors"
+        >
+          Try the Live Demo
+        </a>
+        <a
+          href="/contact.html"
+          class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 px-5 py-3.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
