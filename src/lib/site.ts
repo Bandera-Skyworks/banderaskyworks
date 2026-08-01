@@ -22,6 +22,7 @@ export const nav = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about.html' },
   { label: 'Services', href: '/services.html' },
+  { label: 'UAS-Log', href: '/uas-log.html' },
   { label: 'Contact', href: '/contact.html' },
 ];
 
